@@ -12,11 +12,11 @@ const corsOptions = {
 }
 
 const app = Express();
-app.use(mainRouter);
 app.use(cors(corsOptions));
 app.use(Express.json());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(mainRouter);
 
 AppDataSource.initialize().then(()=> {
     app.listen(process.env.PORT, ()=> {

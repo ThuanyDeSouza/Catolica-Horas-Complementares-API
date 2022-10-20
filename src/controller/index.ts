@@ -10,7 +10,6 @@ export default class Controller implements IController {
         this.service = service;
     }
     create = async (req: Request, res: Response): Promise<Object> => {
-        const {name} = req.body
         const ret = await this.service.create(req.body);
         return res.status(ret.status).json(ret.data);
     }

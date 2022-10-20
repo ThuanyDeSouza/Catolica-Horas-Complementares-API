@@ -24,8 +24,9 @@ export default class Repository implements IRepository {
     }
     destroy = async (id: number): Promise<Object> => {
         const obj =  await AppDataSource.getRepository(this.model).findOneByOrFail({id: id});
-        const dead = await AppDataSource.getRepository(this.model).delete(obj);
-        if(!dead)  {
+        const dead = await AppDataSource.getRepository(this.model).delete(obj.id);
+        
+        if(!dead.affected)  {
             throw "unhandled error"
         }
         return {

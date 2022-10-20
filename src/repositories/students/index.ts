@@ -10,6 +10,7 @@ export default class StudentRepository extends Repository implements IStudentRep
     constructor(model: EntityTarget<Student>, instance: Student) {
         super(model);
         this.student = instance;
+        this.studentModel = model;
     }
 
     create = async (data: any): Promise<Object> => {
@@ -20,6 +21,7 @@ export default class StudentRepository extends Repository implements IStudentRep
         student.period = data.period;
         student.registration = data.registration;
         this.student = student;
+        await AppDataSource.getRepository(this.studentModel).save(student);
         return student;
 
     }
@@ -31,6 +33,7 @@ export default class StudentRepository extends Repository implements IStudentRep
         student.period = data.period;
         student.registration = data.registration;
         this.student = student;
+        await AppDataSource.getRepository(this.studentModel).save(student);
         return student;
     }
 }

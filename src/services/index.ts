@@ -23,7 +23,7 @@ export default class Service implements IService {
     }
     index = async (): Promise<StatusData> => {
         return await this.HandleRepository(async () => {
-            await this.repository.index();
+            return await this.repository.index();
         });
     }
     update = async (id: number, data: Object): Promise<StatusData> => {
